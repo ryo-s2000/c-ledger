@@ -17,3 +17,9 @@ docker compose -f docker-compose-dev.yml up
 
 http://localhost:8080/
 ```
+
+Reset
+```
+docker container prune
+docker compose -f docker-compose-dev.yml up --build
+```
