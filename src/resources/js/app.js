@@ -1,8 +1,8 @@
 require('./bootstrap');
 
 import VueRouter from 'vue-router';
-import LedgerIndexComponent from "./pages/ledger/IndexComponent";
-import NotFoundComponent from "./pages/utility/NotFoundComponent";
+import LedgerIndexPage from "./pages/ledger/IndexPage";
+import NotFoundPage from "./pages/utility/NotFoundPage";
 
 window.Vue = require('vue').default;
 Vue.use(VueRouter);
@@ -12,21 +12,21 @@ const router = new VueRouter({
      routes: [
         {
             path: '/',
-            component: LedgerIndexComponent
+            component: LedgerIndexPage
         },
         {
              path: '/home',
-             component: LedgerIndexComponent
+             component: LedgerIndexPage
         },
         {
             path: '/ledgers',
             name: 'ledgers.index',
-            component: LedgerIndexComponent
+            component: LedgerIndexPage
         },
         {
             path: '*',
             name: '404',
-            component: NotFoundComponent
+            component: NotFoundPage
         },
      ]
 });
