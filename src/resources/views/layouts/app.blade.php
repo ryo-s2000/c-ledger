@@ -23,9 +23,13 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    鈴木建設工事台帳ツール
-                </a>
+                @guest
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        鈴木建設工事台帳ツール
+                    </a>
+                @else
+                    <router-link class="navbar-brand" :to='{ name: "top"}'>鈴木建設工事台帳ツール</router-link>
+                @endguest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
