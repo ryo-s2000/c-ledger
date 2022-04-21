@@ -12,11 +12,8 @@ const router = new VueRouter({
      routes: [
         {
             path: '/',
+            name: 'top',
             component: ConstructionIndexPage
-        },
-        {
-             path: '/home',
-             component: ConstructionIndexPage
         },
         {
             path: '/constructions',
