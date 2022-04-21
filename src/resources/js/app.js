@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 import VueRouter from 'vue-router';
-import LedgerIndexPage from "./pages/ledger/IndexPage";
+import ConstructionIndexPage from "./pages/construction/IndexPage";
 import NotFoundPage from "./pages/utility/NotFoundPage";
 
 window.Vue = require('vue').default;
@@ -12,16 +12,16 @@ const router = new VueRouter({
      routes: [
         {
             path: '/',
-            component: LedgerIndexPage
+            component: ConstructionIndexPage
         },
         {
              path: '/home',
-             component: LedgerIndexPage
+             component: ConstructionIndexPage
         },
         {
-            path: '/ledgers',
-            name: 'ledgers.index',
-            component: LedgerIndexPage
+            path: '/constructions',
+            name: 'constructions.index',
+            component: ConstructionIndexPage
         },
         {
             path: '*',
