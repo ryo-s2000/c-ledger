@@ -1,8 +1,9 @@
 require('./bootstrap');
 
 import VueRouter from 'vue-router';
-import ConstructionIndexPage from "./pages/construction/IndexPage";
-import NotFoundPage from "./pages/utility/NotFoundPage";
+import ConstructionIndexPage from "@/pages/construction/IndexPage";
+import ConstructionCreateAndEditPage from "@/pages/construction/CreateAndEditPage";
+import NotFoundPage from "@/pages/utility/NotFoundPage";
 
 window.Vue = require('vue').default;
 Vue.use(VueRouter);
@@ -19,6 +20,11 @@ const router = new VueRouter({
             path: '/constructions',
             name: 'constructions.index',
             component: ConstructionIndexPage
+        },
+        {
+            path: '/constructions/create',
+            name: 'constructions.create',
+            component: ConstructionCreateAndEditPage
         },
         {
             path: '*',
