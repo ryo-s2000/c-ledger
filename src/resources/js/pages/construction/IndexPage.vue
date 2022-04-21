@@ -21,14 +21,8 @@
         <td>{{ row.score }}</td>
         <td>{{ row.name }}</td>
         <td>{{ row.place }}</td>
-
-        <!-- TODO path -->
-        <td><LinkComponent text='注文書URL' :url='testOrderPath'></LinkComponent></td>
-        <td><LinkComponent text='請求書URL' :url='testInvoicePath'></LinkComponent></td>
-        <td><LinkComponent text='支払依頼書URL' :url='testTotalInvoicePath'></LinkComponent></td>
-        <td><LinkComponent text='提出書類URL' :url='testSubmitDocPath'></LinkComponent></td>
-        <td><LinkComponent text='日報URL' :url='testDailyreportPath'></LinkComponent></td>
-
+        <td><LinkComponent text='書類フォルダURL' :url='googleDrivePath'></LinkComponent></td>
+        <td><LinkComponent text='日報URL' :url='dailyreportBasePath + "constructionNumber=" + row.number'></LinkComponent></td>
         <td>{{ row.price }}</td>
         <td>TODO calc</td>
         <td>{{ row.price_spare1 }}</td>
@@ -66,11 +60,8 @@ export default {
         return {
             columns: [],
             rows: [],
-            testOrderPath: process.env.MIX_APP_TEST_OP,
-            testInvoicePath: process.env.MIX_APP_TEST_IP,
-            testTotalInvoicePath: process.env.MIX_APP_TEST_TIP,
-            testSubmitDocPath: process.env.MIX_APP_TEST_SDP,
-            testDailyreportPath: process.env.MIX_APP_TEST_DP
+            googleDrivePath: process.env.MIX_APP_GOOGLE_DRIVE_PATH, // HACK fix to dynamic
+            dailyreportBasePath: process.env.MIX_APP_DAILYREPORT_BASE_PATH
         }
     },
     methods: {
@@ -85,10 +76,7 @@ export default {
                 '点数',
                 '工事名',
                 '工事箇所',
-                '注文書',
-                '請求書',
-                '支払依頼書',
-                '提出書類',
+                '書類フォルダURL',
                 '日報',
                 '金額（税抜）',
                 '消費税',
