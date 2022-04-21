@@ -1,60 +1,60 @@
 <template>
-<div>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th v-for="column in columns" :key="column">
-            {{ column }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="row in rows" :key="row.id">
-        <td>{{ row.year }}</td>
-        <td>{{ row.number }}</td>
-        <td>{{ row.scale }}</td>
-        <td>{{ row.progress }}</td>
-        <td>{{ row.orderer }}</td>
-        <td>{{ row.contract_date }}</td>
-        <td>{{ row.score }}</td>
-        <td>{{ row.name }}</td>
-        <td>{{ row.place }}</td>
-        <td><LinkComponent text='書類フォルダURL' :url='googleDrivePath'></LinkComponent></td>
-        <td><LinkComponent text='日報URL' :url='dailyreportBasePath + "constructionNumber=" + row.number'></LinkComponent></td>
-        <td>{{ row.price }}</td>
-        <td>TODO calc</td>
-        <td>{{ row.price_spare1 }}</td>
-        <td>{{ row.price_spare2 }}</td>
-        <td>{{ row.price_spare3 }}</td>
-        <td>{{ row.price_spare4 }}</td>
-        <td>{{ row.start }}</td>
-        <td>{{ row.end }}</td>
-        <td>{{ row.period_spare1 }}</td>
-        <td>{{ row.period_spare2 }}</td>
-        <td>{{ row.period_spare3 }}</td>
-        <td>{{ row.period_spare4 }}</td>
-        <td>{{ row.sales }}</td>
-        <td>{{ row.supervisor }}</td>
-        <td>{{ row.agent }}</td>
-        <td>{{ row.developer }}</td>
-        <td>TODO calc</td>
-        <td>{{ row.remarks }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-</div>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th v-for="column in columns" :key="column">
+                        {{ column }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="row in rows" :key="row.id">
+                    <td>{{ row.year }}</td>
+                    <td>{{ row.number }}</td>
+                    <td>{{ row.scale }}</td>
+                    <td>{{ row.progress }}%</td>
+                    <td>{{ row.orderer }}</td>
+                    <td>{{ row.contract_date }}</td>
+                    <td>{{ row.billing_date }}</td>
+                    <td>{{ row.payment_date }}</td>
+                    <td>{{ row.score }}</td>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.place }}</td>
+                    <td><LinkComponent text='書類フォルダURL' :url='googleDrivePath'></LinkComponent></td>
+                    <td><LinkComponent text='日報URL' :url='dailyreportBasePath + "constructionNumber=" + row.number'></LinkComponent></td>
+                    <td><PriceComponent :price='row.price'></PriceComponent></td>
+                    <td><PriceComponent :price='row.price_tax'></PriceComponent></td>
+                    <td><PriceComponent :price='row.price_spare1'></PriceComponent></td>
+                    <td><PriceComponent :price='row.price_spare2'></PriceComponent></td>
+                    <td><PriceComponent :price='row.price_spare3'></PriceComponent></td>
+                    <td><PriceComponent :price='row.price_spare4'></PriceComponent></td>
+                    <td>{{ row.start }}</td>
+                    <td>{{ row.end }}</td>
+                    <td>{{ row.period_spare1 }}</td>
+                    <td>{{ row.period_spare2 }}</td>
+                    <td>{{ row.period_spare3 }}</td>
+                    <td>{{ row.period_spare4 }}</td>
+                    <td>{{ row.sales }}</td>
+                    <td>{{ row.supervisor }}</td>
+                    <td>{{ row.agent }}</td>
+                    <td>{{ row.developer }}</td>
+                    <td><PriceComponent :price='row.total_price'></PriceComponent></td>
+                    <td>{{ row.remarks }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </template>
 
 <script>
 import LinkComponent from "../../components/utility/LinkComponent";
+import PriceComponent from "../../components/utility/PriceComponent";
 
 export default {
     components: {
-        LinkComponent
+        LinkComponent,
+        PriceComponent
     },
     data: function () {
         return {
@@ -73,6 +73,8 @@ export default {
                 '出来高',
                 '発注者',
                 '契約日',
+                '請求日',
+                '支払日',
                 '点数',
                 '工事名',
                 '工事箇所',
