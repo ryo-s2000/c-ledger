@@ -25,6 +25,7 @@
                         <td><LinkComponent text='書類フォルダURL' :url='googleDrivePath'></LinkComponent></td>
                         <td><LinkComponent text='日報URL' :url='dailyreportBasePath + "constructionNumber=" + row.number'></LinkComponent></td>
                         <td><PriceComponent :price='row.price'></PriceComponent></td>
+                        <td>{{ row.tax }}%</td>
                         <td><PriceComponent :price='row.price_tax'></PriceComponent></td>
                         <td><PriceComponent :price='row.price_spare1'></PriceComponent></td>
                         <td><PriceComponent :price='row.price_spare2'></PriceComponent></td>
@@ -85,6 +86,7 @@ export default {
                 '書類フォルダURL',
                 '日報',
                 '金額（税抜）',
+                '税率',
                 '消費税',
                 '増減1（税込)',
                 '増減2（税込)',
