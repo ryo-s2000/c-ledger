@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 
 class ConstructionController extends Controller
 {
-    public function index(Request $request, Construction $construction)
+    public function index(Construction $construction)
     {
         // TODO filter and limit
         $constructions = $construction->limit(10)->get();
 
         return response()->json($constructions);
+    }
+
+    public function store(Request $request, Construction $construction)
+    {
+        $construction->fill($request->all())->save();
     }
 }

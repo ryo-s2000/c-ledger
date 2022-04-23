@@ -15,14 +15,14 @@ class CreateConstructionsTable extends Migration
             $table->bigIncrements('id');
             $table->text('number');
             $table->text('name');
-            $table->text('orderer');
-            $table->integer('price');
-            $table->text('place');
-            $table->datetime('start');
-            $table->datetime('end');
-            $table->text('sales');
-            $table->text('supervisor');
-            $table->text('remarks');
+            $table->text('orderer')->nullable();
+            $table->integer('price')->default(0);
+            $table->text('place')->nullable();
+            $table->datetime('start')->nullable();
+            $table->datetime('end')->nullable();
+            $table->text('sales')->nullable();
+            $table->text('supervisor')->nullable();
+            $table->text('remarks')->nullable();
             $table->timestamps();
         });
     }

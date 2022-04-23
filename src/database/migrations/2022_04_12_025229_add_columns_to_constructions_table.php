@@ -19,7 +19,7 @@ class AddColumnsToConstructionsTable extends Migration
             $table->datetime('billing_date')->nullable()->after('contract_date');
             $table->datetime('payment_date')->nullable()->after('billing_date');
             $table->integer('score')->nullable()->after('payment_date');
-            $table->integer('tax')->after('price');
+            $table->integer('tax')->default(0)->after('price');
             $table->integer('price_spare1')->nullable()->after('tax');
             $table->integer('price_spare2')->nullable()->after('price_spare1');
             $table->integer('price_spare3')->nullable()->after('price_spare2');
@@ -28,8 +28,8 @@ class AddColumnsToConstructionsTable extends Migration
             $table->datetime('period_spare2')->nullable()->after('period_spare1');
             $table->datetime('period_spare3')->nullable()->after('period_spare2');
             $table->datetime('period_spare4')->nullable()->after('period_spare3');
-            $table->string('agent')->default('')->after('supervisor');
-            $table->string('developer')->default('')->after('agent');
+            $table->string('agent')->nullable()->after('supervisor');
+            $table->string('developer')->nullable()->after('agent');
         });
     }
 

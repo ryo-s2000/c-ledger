@@ -16,4 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function (){
     Route::resource('constructions', 'ConstructionController', ['only' => ['index']]);
+
+    // Route::middleware('')->group(function (){
+        Route::resource('constructions', 'ConstructionController', ['only' => ['store']]);
+    // });
 });
