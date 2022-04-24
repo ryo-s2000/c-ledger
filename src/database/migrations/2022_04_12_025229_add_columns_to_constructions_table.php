@@ -12,7 +12,7 @@ class AddColumnsToConstructionsTable extends Migration
     public function up()
     {
         Schema::table('constructions', function (Blueprint $table) {
-            $table->string('year')->index()->default('')->after('id');
+            $table->string('year')->default('')->after('id');
             $table->string('scale')->nullable()->after('number');
             $table->integer('progress')->default(0)->after('scale');
             $table->datetime('contract_date')->nullable()->after('progress');
@@ -30,6 +30,8 @@ class AddColumnsToConstructionsTable extends Migration
             $table->datetime('period_spare4')->nullable()->after('period_spare3');
             $table->string('agent')->nullable()->after('supervisor');
             $table->string('developer')->nullable()->after('agent');
+
+            $table->unique(['year', 'number'], 'year_and_number');
         });
     }
 
@@ -57,6 +59,8 @@ class AddColumnsToConstructionsTable extends Migration
             $table->dropColumn('period_spare4');
             $table->dropColumn('agent');
             $table->dropColumn('developer');
+
+            $table->dropIndex('year_and_number');
         });
     }
 }

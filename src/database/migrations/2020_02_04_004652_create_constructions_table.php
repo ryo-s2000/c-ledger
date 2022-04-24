@@ -13,7 +13,7 @@ class CreateConstructionsTable extends Migration
     {
         Schema::create('constructions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->text('number');
+            $table->string('number');
             $table->text('name');
             $table->text('orderer')->nullable();
             $table->integer('price')->default(0);
