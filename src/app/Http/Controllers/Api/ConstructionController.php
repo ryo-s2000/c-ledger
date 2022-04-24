@@ -30,4 +30,9 @@ class ConstructionController extends Controller
     {
         Construction::find($id)->fill($request->all())->save();
     }
+
+    public function destroy(int $id)
+    {
+        Construction::destroy($id);
+    }
 }

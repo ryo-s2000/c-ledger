@@ -18,6 +18,6 @@ Route::middleware('auth')->group(function (){
     Route::resource('constructions', 'ConstructionController', ['only' => ['index']]);
 
     // Route::middleware('TODO role')->group(function (){
-        Route::resource('constructions', 'ConstructionController', ['only' => ['store', 'show', 'update']]);
+        Route::resource('constructions', 'ConstructionController', ['only' => ['store', 'show', 'update', 'destroy']]);
     // });
 });

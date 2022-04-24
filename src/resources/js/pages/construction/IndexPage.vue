@@ -44,6 +44,7 @@
                         <td><PriceComponent :price='row.total_price'></PriceComponent></td>
                         <td>{{ row.remarks }}</td>
                         <td><button type="button" class="btn btn-warning" @click='$router.push({ name: "constructions.edit", params: { id: row.id }})'>編集</button></td>
+                        <td><button type="button" class="btn btn-danger" @click='deleteConstruction(row.id)'>削除</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -106,6 +107,7 @@ export default {
                 '最終請負金額(税込)',
                 '備考',
                 '編集',
+                '削除',
             ];
         },
         getRows() {
@@ -114,6 +116,15 @@ export default {
                     this.rows = res.data;
                 });
         },
+        deleteConstruction(id) {
+            const input = window.prompt("本当に削除する場合は「delete」と入力してください");
+            if(input === 'delete') {
+                axios.delete('/api/constructions/' + id)
+                    .then((res) => {
+                        this.getRows();
+                    });
+            }
+        }
     },
     mounted() {
         this.initColumns();
