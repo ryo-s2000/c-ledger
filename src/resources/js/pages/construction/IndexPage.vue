@@ -43,6 +43,7 @@
                         <td>{{ row.developer }}</td>
                         <td><PriceComponent :price='row.total_price'></PriceComponent></td>
                         <td>{{ row.remarks }}</td>
+                        <td><button type="button" class="btn btn-warning" @click='$router.push({ name: "constructions.edit", params: { id: row.id }})'>編集</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -104,6 +105,7 @@ export default {
                 '主任技術者',
                 '最終請負金額(税込)',
                 '備考',
+                '編集',
             ];
         },
         getRows() {

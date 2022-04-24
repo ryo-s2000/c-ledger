@@ -27,6 +27,11 @@ const router = new VueRouter({
             component: ConstructionCreateAndEditPage
         },
         {
+            path: '/constructions/:id/edit',
+            name: 'constructions.edit',
+            component: ConstructionCreateAndEditPage
+        },
+        {
             path: '*',
             name: '404',
             component: NotFoundPage

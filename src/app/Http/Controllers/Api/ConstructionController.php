@@ -20,4 +20,14 @@ class ConstructionController extends Controller
     {
         $construction->fill($request->all())->save();
     }
+
+    public function show(int $id)
+    {
+        return Construction::find($id);
+    }
+
+    public function update(Request $request, int $id)
+    {
+        Construction::find($id)->fill($request->all())->save();
+    }
 }

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function (){
     Route::resource('constructions', 'ConstructionController', ['only' => ['index']]);
 
-    // Route::middleware('')->group(function (){
-        Route::resource('constructions', 'ConstructionController', ['only' => ['store']]);
+    // Route::middleware('TODO role')->group(function (){
+        Route::resource('constructions', 'ConstructionController', ['only' => ['store', 'show', 'update']]);
     // });
 });
