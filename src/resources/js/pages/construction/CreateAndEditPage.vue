@@ -255,10 +255,10 @@ export default {
                 period_spare2: this.construction.period_spare2,
                 period_spare3: this.construction.period_spare3,
                 period_spare4: this.construction.period_spare4,
-                sales: this.construction.sales,
-                supervisor: this.construction.supervisor,
-                agent: this.construction.agent,
-                developer: this.construction.developer,
+                sales: this.deleteAllWiteSpace(this.construction.sales),
+                supervisor: this.deleteAllWiteSpace(this.construction.supervisor),
+                agent: this.deleteAllWiteSpace(this.construction.agent),
+                developer: this.deleteAllWiteSpace(this.construction.developer),
                 remarks: this.construction.remarks
             };
         },
@@ -274,6 +274,9 @@ export default {
         successRequest() {
             window.alert('保存成功');
             this.$router.push({ name: "constructions.index"});
+        },
+        deleteAllWiteSpace(text) {
+            return text.replaceAll(/\s/g,'');
         }
     },
     mounted() {
