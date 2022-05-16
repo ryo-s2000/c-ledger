@@ -21,7 +21,7 @@
         <div class="m-2 mb-5">
             <span class="text-danger">[必須]</span><span>出来高</span>
             <div class="input-group">
-                <input type="number" class="form-control" v-model='construction.progress'>
+                <input type="number" class="form-control" v-model='construction.progress_value'>
                 <div class="input-group-append">
                     <span class="input-group-text" id="basic-addon2">%</span>
                 </div>
@@ -167,7 +167,7 @@ export default {
                 year: '',
                 number: '',
                 scale: '',
-                progress: 0,
+                progress_value: 0,
                 contract_date: '',
                 billing_date: '',
                 payment_date: '',
@@ -219,7 +219,7 @@ export default {
             if(!this.years.includes(this.construction.year)) errorMessages.push('年度を選択してください');
             if(!this.construction.number) errorMessages.push('工事番号を入力してください');
             if(!this.construction.name) errorMessages.push('工事名を入力してください');
-            if(this.construction.progress !== 0 && !this.construction.progress) errorMessages.push('出来高に数字を入力してください');
+            if(this.construction.progress_value !== 0 && !this.construction.progress_value) errorMessages.push('出来高に数字を入力してください');
             if(this.construction.price !== 0 && !this.construction.price) errorMessages.push('金額に数字を入力してください');
             if(this.construction.tax !== 0 && !this.construction.tax) errorMessages.push('税率に数字を入力してください');
 
@@ -235,7 +235,7 @@ export default {
                 year: this.construction.year,
                 number: this.construction.number,
                 scale: this.construction.scale,
-                progress: this.construction.progress,
+                progress_value: this.construction.progress_value,
                 contract_date: this.construction.contract_date,
                 billing_date: this.construction.billing_date,
                 payment_date: this.construction.payment_date,
@@ -276,6 +276,7 @@ export default {
             this.$router.push({ name: "constructions.index"});
         },
         deleteAllWiteSpace(text) {
+            if (!text) return;
             return text.replaceAll(/\s/g,'');
         }
     },

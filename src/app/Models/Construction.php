@@ -12,6 +12,7 @@ class Construction extends Model
     ];
 
     protected $casts = [
+        'progress' => 'json',
         'contract_date' => 'datetime:Y-m-d',
         'billing_date' => 'datetime:Y-m-d',
         'payment_date' => 'datetime:Y-m-d',
@@ -24,9 +25,16 @@ class Construction extends Model
     ];
 
     protected $appends = [
+        'progress_value',
         'price_tax',
         'total_price'
     ];
+
+    public function getProgressValueAttribute()
+    {
+        $progress = collect($this->progress);
+        return $progress->sortBy('datetime')->pluck('value')->last();
+    }
 
     public function getPriceTaxAttribute()
     {

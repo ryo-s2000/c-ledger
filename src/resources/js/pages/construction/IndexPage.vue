@@ -14,7 +14,7 @@
                         <td>{{ row.year }}</td>
                         <td>{{ row.number }}</td>
                         <td>{{ row.scale }}</td>
-                        <td>{{ row.progress }}%</td>
+                        <td>{{ row.progress_value }}%</td>
                         <td>{{ row.orderer }}</td>
                         <td>{{ row.contract_date }}</td>
                         <td>{{ row.billing_date }}</td>

@@ -18,7 +18,11 @@ class ConstructionController extends Controller
 
     public function store(Request $request, Construction $construction)
     {
-        $construction->fill($request->all())->save();
+        $construction->fill($request->all());
+        $construction->fill([
+            'progress' => $this->createProgressColumn($request->progress_value)
+        ]);
+        $construction->save();
     }
 
     public function show(int $id)
@@ -28,11 +32,30 @@ class ConstructionController extends Controller
 
     public function update(Request $request, int $id)
     {
-        Construction::find($id)->fill($request->all())->save();
+        $construction = Construction::find($id);
+        $construction->fill($request->all());
+
+        if($construction->progress_value !== $request->progress_value) {
+            $construction->fill([
+                'progress' => array_merge($construction->progress, $this->createProgressColumn($request->progress_value))
+            ]);
+        }
+
+        $construction->save();
     }
 
     public function destroy(int $id)
     {
         Construction::destroy($id);
+    }
+
+    private function createProgressColumn($progressValue)
+    {
+        return [
+            [
+                'value' => $progressValue,
+                'datetime' => now()
+            ]
+        ];
     }
 }
