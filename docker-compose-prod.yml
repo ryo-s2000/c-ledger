@@ -11,12 +11,3 @@ services:
       - ./infra/dev/nginx/default.conf:/etc/nginx/conf.d/default.conf
     ports:
       - 80:80
-  db:
-    build: ./infra/dev/mysql
-    volumes:
-      - db-store:/var/lib/mysql
-    ports:
-      - 33060:3306
-
-volumes:
-  db-store:
