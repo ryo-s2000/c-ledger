@@ -8,11 +8,26 @@ use Illuminate\Http\Request;
 
 class ConstructionController extends Controller
 {
-    public function index(Construction $construction)
+    public function index(Construction $construction, Request $request)
     {
-        // TODO filter and limit
-        $constructions = $construction->limit(10)->get();
+        $query = $construction;
 
+        // fulter
+        $year = $request->year;
+        if (!empty($year)) $query = $query->where('year', $year);
+
+        // sort
+        $query = $query->orderBy('year', 'desc')->orderBy('number', 'asc');
+
+        // limit
+        $limit = $request->limit;
+        if (is_numeric($limit)) {
+            $query = $query->limit($limit);
+        } else {
+            $query = $query->limit(300);
+        }
+
+        $constructions = $query->get();
         return response()->json($constructions);
     }
 

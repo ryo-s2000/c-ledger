@@ -1,6 +1,26 @@
 <template>
     <div>
         <div class="table-responsive">
+            <div class="m-4">
+                <p class="h5">フィルター</p>
+
+                <button type="button" class="btn btn-info m-2" @click='getRows()'>更新</button>
+
+                <div class="m-2">
+                    <span>年度</span>
+
+                    <select class="form-select" v-model='filterParams.year'>
+                        <option value="">未選択</option>
+                        <option v-for='y in years' :key='y' :value='y'>{{ y }}</option>
+                    </select>
+                </div>
+
+                <div class="m-2">
+                    <span>最大表示件数</span>
+
+                    <input type="text" class="form-control" v-model='filterParams.limit'>
+                </div>
+            </div>
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -65,13 +85,21 @@ export default {
     },
     data: function () {
         return {
+            years: [],
             columns: [],
             rows: [],
+            filterParams: {
+                year: '',
+                limit: 300
+            },
             googleDrivePath: process.env.MIX_APP_GOOGLE_DRIVE_PATH, // HACK fix to dynamic
             dailyreportBasePath: process.env.MIX_APP_DAILYREPORT_BASE_PATH
         }
     },
     methods: {
+        initYears() {
+            for ( let i=3; i<=20; ++i ) this.years.push(`R${i}`);
+        },
         initColumns() {
             this.columns = [
                 '年度',
@@ -111,7 +139,13 @@ export default {
             ];
         },
         getRows() {
-            axios.get('/api/constructions')
+            let fulter_params = '';
+
+            for (const [key, value] of Object.entries(this.filterParams)) {
+                fulter_params += `${key}=${value}&`
+            }
+
+            axios.get('/api/constructions?' + fulter_params)
                 .then((res) => {
                     this.rows = res.data;
                 });
@@ -127,6 +161,7 @@ export default {
         }
     },
     mounted() {
+        this.initYears();
         this.initColumns();
         this.getRows();
     }
