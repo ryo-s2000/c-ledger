@@ -64,7 +64,10 @@ class ConstructionController extends Controller
 
     public function destroy(int $id)
     {
-        Construction::destroy($id);
+        $construction = Construction::find($id);
+        $construction->fill([
+            'hidden_at' => now()
+        ])->save();
     }
 
     private function createProgressColumn($progressValue)

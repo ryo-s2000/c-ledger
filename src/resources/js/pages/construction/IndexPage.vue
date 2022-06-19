@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="row in rows" :key="row.id">
+                    <tr v-for="row in rows" :key="row.id" :class="{ hidden_row: row.hidden_at }">
                         <td>{{ row.year }}</td>
                         <td>{{ row.number }}</td>
                         <td>{{ row.scale }}</td>
@@ -75,8 +75,8 @@
                         <td>{{ row.developer }}</td>
                         <td><PriceComponent :price='row.total_price'></PriceComponent></td>
                         <td>{{ row.remarks }}</td>
-                        <td><button type="button" class="btn btn-warning" @click='$router.push({ name: "constructions.edit", params: { id: row.id }})'>編集</button></td>
-                        <td><button type="button" class="btn btn-danger" @click='deleteConstruction(row.id)'>削除</button></td>
+                        <td><div v-if='!row.hidden_at'><button type="button" class="btn btn-warning" @click='$router.push({ name: "constructions.edit", params: { id: row.id }})'>編集</button></div></td>
+                        <td><div v-if='!row.hidden_at'><button type="button" class="btn btn-danger" @click='deleteConstruction(row.id)'>非表示</button></div></td>
                     </tr>
                 </tbody>
             </table>
@@ -186,8 +186,8 @@ export default {
                 });
         },
         deleteConstruction(id) {
-            const input = window.prompt("本当に削除する場合は「delete」と入力してください");
-            if(input === 'delete') {
+            const input = window.prompt("非表示にした後は編集が出来なくなります、本当に非表示にする場合は「hidden」と入力してください");
+            if(input === 'hidden') {
                 axios.delete('/api/constructions/' + id)
                     .then((res) => {
                         this.getRows();
