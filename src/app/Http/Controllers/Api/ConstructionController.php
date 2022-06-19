@@ -16,6 +16,9 @@ class ConstructionController extends Controller
         $year = $request->year;
         if (!empty($year)) $query = $query->where('year', $year);
 
+        $category = $request->category;
+        if (!empty($category)) $query = $query->where('number', 'like', $category.'%');
+
         // sort
         $query = $query->orderBy('year', 'desc')->orderBy('number', 'asc');
 

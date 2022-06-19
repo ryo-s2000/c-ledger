@@ -4,8 +4,6 @@
             <div class="m-4">
                 <p class="h5">フィルター</p>
 
-                <button type="button" class="btn btn-info m-2" @click='getRows()'>更新</button>
-
                 <div class="m-2">
                     <span>年度</span>
 
@@ -16,11 +14,25 @@
                 </div>
 
                 <div class="m-2">
+                    <span>種別</span>
+
+                    <select class="form-select" v-model='filterParams.category'>
+                        <option value="">未選択</option>
+                        <option v-for='c in categories' :key='c' :value='c'>{{ c }}</option>
+                    </select>
+                </div>
+
+                <div class="m-2">
                     <span>最大表示件数</span>
 
                     <input type="text" class="form-control" v-model='filterParams.limit'>
                 </div>
+
+                <button type="button" class="btn btn-info m-2" @click='getRows()'>更新</button>
             </div>
+
+            <button type="button" class="btn btn-primary m-2" @click='$router.push({ name: "constructions.create"})'>新規作成</button>
+
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
                     <tr>
@@ -69,8 +81,6 @@
                 </tbody>
             </table>
         </div>
-
-        <button type="button" class="btn btn-primary m-2" @click='$router.push({ name: "constructions.create"})'>新規作成</button>
     </div>
 </template>
 
@@ -86,12 +96,14 @@ export default {
     data: function () {
         return {
             years: [],
-            columns: [],
-            rows: [],
+            categories: [],
             filterParams: {
                 year: '',
+                category: '',
                 limit: 300
             },
+            columns: [],
+            rows: [],
             googleDrivePath: process.env.MIX_APP_GOOGLE_DRIVE_PATH, // HACK fix to dynamic
             dailyreportBasePath: process.env.MIX_APP_DAILYREPORT_BASE_PATH
         }
@@ -138,6 +150,29 @@ export default {
                 '削除',
             ];
         },
+        initCategories() {
+            this.categories = [
+                'KA',
+                'KA雑',
+                'KB',
+                'KB雑',
+                'KC',
+                'KC雑',
+                'KD',
+                'MA',
+                'MA雑',
+                'MB',
+                'MC',
+                'MC雑',
+                'MT',
+                'MT雑',
+                'MI',
+                'MI雑',
+                'ZA',
+                'XA',
+                'TO',
+            ];
+        },
         getRows() {
             let fulter_params = '';
 
@@ -163,6 +198,7 @@ export default {
     mounted() {
         this.initYears();
         this.initColumns();
+        this.initCategories();
         this.getRows();
     }
 }
