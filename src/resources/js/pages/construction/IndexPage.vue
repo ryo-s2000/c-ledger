@@ -42,7 +42,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="row in rows" :key="row.id" :class="{ hidden_row: row.hidden_at }">
+                    <tr v-for="row in rows" :key="row.id" :class="{ hidden_row: row.hidden_at }" :style="{'background-color': row.row_color }">
                         <td>{{ row.year }}</td>
                         <td>{{ row.number }}</td>
                         <td>{{ row.scale }}</td>

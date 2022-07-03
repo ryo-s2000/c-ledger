@@ -16,5 +16,6 @@ td {
 }
 
 .hidden_row {
-    background-color: #808080;
+    // 非表示rowは強制的にこの色になる
+    background-color: #808080!important;
 }
