@@ -153,6 +153,14 @@
             <textarea type="text" class="form-control" v-model='construction.remarks' rows="5"></textarea>
         </div>
 
+        <div class="m-2 mb-5">
+            <span>色</span>
+            <select class="form-control" v-model='construction.row_color'>
+                <option disabled value="">未設定</option>
+                <option v-for='c in row_colors' :key='c.value' :value='c.value' :style="{'background-color': c.value }">{{ c.key }}</option>
+            </select>
+        </div>
+
         <button type="button" class="btn btn-primary m-2" @click='save()'>保存</button>
     </div>
 </template>
@@ -162,6 +170,7 @@ export default {
     data: function () {
         return {
             years: [],
+            row_colors: [],
             construction: {
                 id: this.$route.params.id,
                 year: '',
@@ -191,13 +200,20 @@ export default {
                 supervisor: '',
                 agent: '',
                 developer: '',
-                remarks: ''
+                remarks: '',
+                row_color: ''
             }
         }
     },
     methods: {
         initYears() {
             for ( let i=3; i<=20; ++i ) this.years.push(`R${i}`);
+        },
+        initRowColors() {
+            this.row_colors = [
+                { key: 'オレンジ', value: '#FFB266' },
+                { key: '黄色', value: '#FFFF66' }
+            ]
         },
         initConstruction() {
             if(!this.construction.id) return;
@@ -259,7 +275,8 @@ export default {
                 supervisor: this.deleteAllWiteSpace(this.construction.supervisor),
                 agent: this.deleteAllWiteSpace(this.construction.agent),
                 developer: this.deleteAllWiteSpace(this.construction.developer),
-                remarks: this.construction.remarks
+                remarks: this.construction.remarks,
+                row_color: this.construction.row_color,
             };
         },
         async requestToApi(req) {
@@ -282,6 +299,7 @@ export default {
     },
     mounted() {
         this.initYears();
+        this.initRowColors();
         this.initConstruction();
     }
 }
