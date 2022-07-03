@@ -75,8 +75,9 @@
                         <td>{{ row.developer }}</td>
                         <td><PriceComponent :price='row.total_price'></PriceComponent></td>
                         <td>{{ row.remarks }}</td>
-                        <td><div v-if='!row.hidden_at'><button type="button" class="btn btn-warning" @click='$router.push({ name: "constructions.edit", params: { id: row.id }})'>編集</button></div></td>
-                        <td><div v-if='!row.hidden_at'><button type="button" class="btn btn-danger" @click='deleteConstruction(row.id)'>非表示</button></div></td>
+                        <td><div v-if='!row.hidden_at'><button type="button" class="btn-warning" @click='$router.push({ name: "constructions.copy.create", params: { id: row.id }})'>コピーして作成</button></div></td>
+                        <td><div v-if='!row.hidden_at'><button type="button" class="btn-warning" @click='$router.push({ name: "constructions.edit", params: { id: row.id }})'>編集</button></div></td>
+                        <td><div v-if='!row.hidden_at'><button type="button" class="btn-danger" @click='deleteConstruction(row.id)'>非表示</button></div></td>
                     </tr>
                 </tbody>
             </table>
@@ -146,6 +147,7 @@ export default {
                 '主任技術者',
                 '最終請負金額(税込)',
                 '備考',
+                'コピー',
                 '編集',
                 '削除',
             ];

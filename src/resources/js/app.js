@@ -27,6 +27,11 @@ const router = new VueRouter({
             component: ConstructionCreateAndEditPage
         },
         {
+            path: '/constructions/:id/copy/create',
+            name: 'constructions.copy.create',
+            component: ConstructionCreateAndEditPage
+        },
+        {
             path: '/constructions/:id/edit',
             name: 'constructions.edit',
             component: ConstructionCreateAndEditPage

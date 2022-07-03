@@ -280,7 +280,8 @@ export default {
             };
         },
         async requestToApi(req) {
-            if(this.construction.id) {
+            const isCopy = (new URL(window.location.href)).href.match(/copy/)
+            if(this.construction.id && !isCopy) {
                 const res = await axios.put('/api/constructions/' + this.construction.id, req);
                 if(res) this.successRequest();
             } else {
