@@ -54,7 +54,7 @@
                         <td>{{ row.score }}</td>
                         <td>{{ row.name }}</td>
                         <td>{{ row.place }}</td>
-                        <td><LinkComponent text='書類フォルダURL' :url='googleDrivePath'></LinkComponent></td>
+                        <td><LinkComponent text='書類フォルダURL' :url='googleDrivePath(row.year)'></LinkComponent></td>
                         <td><LinkComponent text='日報URL' :url='dailyreportBasePath + "constructionNumber=" + row.number'></LinkComponent></td>
                         <td><PriceComponent :price='row.price'></PriceComponent></td>
                         <td>{{ row.tax }}%</td>
@@ -105,7 +105,6 @@ export default {
             },
             columns: [],
             rows: [],
-            googleDrivePath: process.env.MIX_APP_GOOGLE_DRIVE_PATH, // HACK fix to dynamic
             dailyreportBasePath: process.env.MIX_APP_DAILYREPORT_BASE_PATH
         }
     },
@@ -186,6 +185,18 @@ export default {
                 .then((res) => {
                     this.rows = res.data;
                 });
+        },
+        googleDrivePath(year) {
+            const base = 'https://drive.google.com/drive/u/1/folders/';
+            let folderId = '0AHC7JJ7vQ1FJUk9PVA';
+
+            switch (year) {
+                case 'R4':
+                    folderId = '1XIT1mRse-D1sMRLP3pl8-MEARdZ5FUmL'
+                    break;
+            }
+
+            return base + folderId;
         },
         deleteConstruction(id) {
             const input = window.prompt("非表示にした後は編集が出来なくなります、本当に非表示にする場合は「hidden」と入力してください");
