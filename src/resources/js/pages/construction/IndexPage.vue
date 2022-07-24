@@ -32,6 +32,7 @@
             </div>
 
             <button type="button" class="btn btn-primary m-2" @click='$router.push({ name: "constructions.create"})'>新規作成</button>
+            <button type="button" class="btn btn-success m-2" @click='$router.push({ name: "csv.create"})'>エクセル作成</button>
 
             <table class="table table-striped table-bordered">
                 <thead class="thead-dark">
@@ -109,50 +110,8 @@ export default {
         }
     },
     methods: {
-        initYears() {
-            for ( let i=3; i<=20; ++i ) this.years.push(`R${i}`);
-        },
-        initColumns() {
-            this.columns = [
-                '年度',
-                '工事番号',
-                '規模',
-                '出来高',
-                '発注者',
-                '契約日',
-                '請求日',
-                '支払日',
-                '点数',
-                '工事名',
-                '工事箇所',
-                '書類フォルダURL',
-                '日報',
-                '金額（税抜）',
-                '税率',
-                '消費税',
-                '増減1（税込)',
-                '増減2（税込)',
-                '増減3（税込)',
-                '増減4（税込)',
-                '工期自',
-                '工期至',
-                '工期変更1',
-                '工期変更2',
-                '工期変更3',
-                '工期変更4',
-                '営業担当',
-                '工事担当',
-                '現場代理人',
-                '主任技術者',
-                '最終請負金額(税込)',
-                '備考',
-                'コピー',
-                '編集',
-                '削除',
-            ];
-        },
-        initCategories() {
-            this.categories = [
+        getCategories() {
+            return [
                 'KA',
                 'KA雑',
                 'KB',
@@ -209,9 +168,9 @@ export default {
         }
     },
     mounted() {
-        this.initYears();
-        this.initColumns();
-        this.initCategories();
+        this.years = this.getYears();
+        this.columns = this.getColumns();
+        this.categories = this.getCategories();
         this.getRows();
     }
 }

@@ -44,7 +44,7 @@
         </div>
 
         <div class="m-2 mb-5">
-            <span>支払日</span>
+            <span>入金日</span>
             <input type="date" class="form-control" v-model='construction.payment_date'>
         </div>
 
@@ -206,11 +206,8 @@ export default {
         }
     },
     methods: {
-        initYears() {
-            for ( let i=3; i<=20; ++i ) this.years.push(`R${i}`);
-        },
-        initRowColors() {
-            this.row_colors = [
+        getRowColors() {
+            return [
                 { key: 'オレンジ', value: '#FFB266' },
                 { key: '黄色', value: '#FFFF66' }
             ]
@@ -299,8 +296,8 @@ export default {
         }
     },
     mounted() {
-        this.initYears();
-        this.initRowColors();
+        this.years = this.getYears();
+        this.row_colors = this.getRowColors();
         this.initConstruction();
     }
 }
