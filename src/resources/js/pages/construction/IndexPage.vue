@@ -83,6 +83,12 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="construction_category_footer">
+            <div class="construction_category_content" v-for='c in categories' :key='c' :value='c' v-bind:class="{ 'construction_category_active': c == filterParams.category }" @click='changeCategory(c)'>
+                {{ c }}
+            </div>
+        </div>
     </div>
 </template>
 
@@ -165,6 +171,10 @@ export default {
                         this.getRows();
                     });
             }
+        },
+        changeCategory(category) {
+            this.filterParams.category = category;
+            this.getRows();
         }
     },
     mounted() {

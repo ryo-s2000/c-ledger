@@ -6,3 +6,25 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// original
+.construction_category {
+    &_footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background-color: #c2c2c2;
+        display: flex;
+    }
+
+    &_content {
+        padding:5px 8px;
+        border: 1px solid black;
+        cursor: pointer;
+    }
+
+    &_active {
+        background-color: #f2f2f2;
+    }
+}
