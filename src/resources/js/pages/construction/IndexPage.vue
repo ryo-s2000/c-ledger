@@ -171,29 +171,6 @@ export default {
         }
     },
     methods: {
-        getCategories() {
-            return [
-                'KA',
-                'KA雑',
-                'KB',
-                'KB雑',
-                'KC',
-                'KC雑',
-                'KD',
-                'MA',
-                'MA雑',
-                'MB',
-                'MC',
-                'MC雑',
-                'MT',
-                'MT雑',
-                'MI',
-                'MI雑',
-                'ZA',
-                'XA',
-                'TO',
-            ];
-        },
         getRows() {
             let fulter_params = '';
 
