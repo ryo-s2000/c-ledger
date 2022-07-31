@@ -23,45 +23,57 @@
                 </div>
 
                 <div class="m-2">
-                    <span>発注者</span>
-
-                    <input type="text" class="form-control" v-model='filterParams.orderer'>
-                </div>
-
-                <div class="m-2">
-                    <span>営業担当</span>
-
-                    <input type="text" class="form-control" v-model='filterParams.sales'>
-                </div>
-
-                <div class="m-2">
-                    <span>工事担当</span>
-
-                    <input type="text" class="form-control" v-model='filterParams.supervisor'>
-                </div>
-
-                <div class="m-2">
-                    <span>現場代理人</span>
-
-                    <input type="text" class="form-control" v-model='filterParams.agent'>
-                </div>
-
-                <div class="m-2">
-                    <span>主任技術者</span>
-
-                    <input type="text" class="form-control" v-model='filterParams.developer'>
-                </div>
-
-                <div class="m-2">
-                    <span>工事箇所</span>
-
-                    <input type="text" class="form-control" v-model='filterParams.place'>
-                </div>
-
-                <div class="m-2">
                     <span>最大表示件数</span>
 
                     <input type="text" class="form-control" v-model='filterParams.limit'>
+                </div>
+
+                <div class="m-2 mt-4 mb-3">
+                    <div>
+                        <span @click='accordionMenue = !accordionMenue' class="h4 pointer">
+                            <span v-if='!accordionMenue'>詳細検索を開く</span>
+                            <span v-else>詳細検索を閉じる</span>
+                        </span>
+                        <transition>
+                            <div v-show='accordionMenue'>
+                                <div class="m-2">
+                                    <span>発注者</span>
+
+                                    <input type="text" class="form-control" v-model='filterParams.orderer'>
+                                </div>
+
+                                <div class="m-2">
+                                    <span>営業担当</span>
+
+                                    <input type="text" class="form-control" v-model='filterParams.sales'>
+                                </div>
+
+                                <div class="m-2">
+                                    <span>工事担当</span>
+
+                                    <input type="text" class="form-control" v-model='filterParams.supervisor'>
+                                </div>
+
+                                <div class="m-2">
+                                    <span>現場代理人</span>
+
+                                    <input type="text" class="form-control" v-model='filterParams.agent'>
+                                </div>
+
+                                <div class="m-2">
+                                    <span>主任技術者</span>
+
+                                    <input type="text" class="form-control" v-model='filterParams.developer'>
+                                </div>
+
+                                <div class="m-2">
+                                    <span>工事箇所</span>
+
+                                    <input type="text" class="form-control" v-model='filterParams.place'>
+                                </div>
+                            </div>
+                        </transition>
+                    </div>
                 </div>
 
                 <button type="button" class="btn btn-info m-2" @click='getRows()'>更新</button>
@@ -121,7 +133,7 @@
         </div>
 
         <div class="construction_category_footer">
-            <div class="construction_category_content" v-for='c in categories' :key='c' :value='c' v-bind:class="{ 'construction_category_active': c == filterParams.category }" @click='changeCategory(c)'>
+            <div class="construction_category_content pointer" v-for='c in categories' :key='c' :value='c' v-bind:class="{ 'construction_category_active': c == filterParams.category }" @click='changeCategory(c)'>
                 {{ c }}
             </div>
         </div>
@@ -154,6 +166,7 @@ export default {
             },
             columns: [],
             rows: [],
+            accordionMenue: false,
             dailyreportBasePath: process.env.MIX_APP_DAILYREPORT_BASE_PATH
         }
     },
@@ -227,3 +240,17 @@ export default {
     }
 }
 </script>
+
+<style>
+    .v-enter {
+        opacity: 0;
+    }
+
+    .v-enter-to {
+        opacity: 1;
+    }
+
+    .v-enter-active {
+        transition: all 500ms;
+    }
+</style>

@@ -8,6 +8,10 @@
 @import '~bootstrap/scss/bootstrap';
 
 // original
+.pointer {
+    cursor: pointer;
+}
+
 .construction_category {
     &_footer {
         position: fixed;
@@ -21,7 +25,6 @@
     &_content {
         padding:5px 8px;
         border: 1px solid black;
-        cursor: pointer;
     }
 
     &_active {
