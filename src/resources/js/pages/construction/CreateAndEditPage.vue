@@ -66,6 +66,7 @@
         <div class="m-2 mb-5">
             <span class="text-danger">[必須]</span><span>金額（税抜）</span>
             <input type="number" class="form-control" v-model='construction.price'>
+            <PriceComponent :price='parseInt(construction.price)'></PriceComponent>
         </div>
 
         <div class="m-2 mb-5">
@@ -81,21 +82,25 @@
         <div class="m-2 mb-5">
             <span>増減1（税込)</span>
             <input type="number" class="form-control" v-model='construction.price_spare1'>
+            <PriceComponent :price='parseInt(construction.price_spare1)'></PriceComponent>
         </div>
 
         <div class="m-2 mb-5">
             <span>増減2（税込)</span>
             <input type="number" class="form-control" v-model='construction.price_spare2'>
+            <PriceComponent :price='parseInt(construction.price_spare2)'></PriceComponent>
         </div>
 
         <div class="m-2 mb-5">
             <span>増減3（税込)</span>
             <input type="number" class="form-control" v-model='construction.price_spare3'>
+            <PriceComponent :price='parseInt(construction.price_spare3)'></PriceComponent>
         </div>
 
         <div class="m-2 mb-5">
             <span>増減4（税込)</span>
             <input type="number" class="form-control" v-model='construction.price_spare4'>
+            <PriceComponent :price='parseInt(construction.price_spare4)'></PriceComponent>
         </div>
 
         <div class="m-2 mb-5">
@@ -166,7 +171,12 @@
 </template>
 
 <script>
+import PriceComponent from "@/components/utility/PriceComponent";
+
 export default {
+    components: {
+        PriceComponent
+    },
     data: function () {
         return {
             years: [],
