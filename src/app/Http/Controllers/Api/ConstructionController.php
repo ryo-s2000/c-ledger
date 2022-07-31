@@ -22,6 +22,9 @@ class ConstructionController extends Controller
         $orderer = $request->orderer;
         if (!empty($orderer)) $query = $query->where('orderer', 'like', '%'.$orderer.'%');
 
+        $place = $request->place;
+        if (!empty($place)) $query = $query->where('place', 'like', '%'.$place.'%');
+
         // sort
         $query = $query->orderBy('year', 'desc')->orderBy('number', 'asc');
 

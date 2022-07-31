@@ -23,9 +23,15 @@
                 </div>
 
                 <div class="m-2">
-                    <span>発注者検索</span>
+                    <span>発注者</span>
 
                     <input type="text" class="form-control" v-model='filterParams.orderer'>
+                </div>
+
+                <div class="m-2">
+                    <span>工事箇所</span>
+
+                    <input type="text" class="form-control" v-model='filterParams.place'>
                 </div>
 
                 <div class="m-2">
@@ -115,6 +121,7 @@ export default {
                 year: '',
                 category: '',
                 orderer: '',
+                place: '',
                 limit: 300
             },
             columns: [],
