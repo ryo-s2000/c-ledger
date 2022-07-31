@@ -38,7 +38,7 @@ class Construction extends Model
 
     public function getPriceTaxAttribute()
     {
-        return $this->price * $this->tax / 100;
+        return floor($this->price * $this->tax / 100);
     }
 
     public function getTotalPriceAttribute()
