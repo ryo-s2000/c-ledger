@@ -23,6 +23,12 @@
                 </div>
 
                 <div class="m-2">
+                    <span>発注者検索</span>
+
+                    <input type="text" class="form-control" v-model='filterParams.orderer'>
+                </div>
+
+                <div class="m-2">
                     <span>最大表示件数</span>
 
                     <input type="text" class="form-control" v-model='filterParams.limit'>
@@ -108,6 +114,7 @@ export default {
             filterParams: {
                 year: '',
                 category: '',
+                orderer: '',
                 limit: 300
             },
             columns: [],
