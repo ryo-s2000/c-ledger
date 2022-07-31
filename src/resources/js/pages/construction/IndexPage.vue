@@ -105,13 +105,13 @@
                         <td>{{ row.place }}</td>
                         <td><LinkComponent text='書類フォルダURL' :url='googleDrivePath(row.year)'></LinkComponent></td>
                         <td><LinkComponent text='日報URL' :url='dailyreportBasePath + "constructionNumber=" + row.number'></LinkComponent></td>
-                        <td><PriceComponent :price='row.price'></PriceComponent></td>
+                        <td class='align-right'><PriceComponent :price='row.price'></PriceComponent></td>
                         <td>{{ row.tax }}%</td>
-                        <td><PriceComponent :price='row.price_tax'></PriceComponent></td>
-                        <td><PriceComponent :price='row.price_spare1'></PriceComponent></td>
-                        <td><PriceComponent :price='row.price_spare2'></PriceComponent></td>
-                        <td><PriceComponent :price='row.price_spare3'></PriceComponent></td>
-                        <td><PriceComponent :price='row.price_spare4'></PriceComponent></td>
+                        <td class='align-right'><PriceComponent :price='row.price_tax'></PriceComponent></td>
+                        <td class='align-right'><PriceComponent :price='row.price_spare1'></PriceComponent></td>
+                        <td class='align-right'><PriceComponent :price='row.price_spare2'></PriceComponent></td>
+                        <td class='align-right'><PriceComponent :price='row.price_spare3'></PriceComponent></td>
+                        <td class='align-right'><PriceComponent :price='row.price_spare4'></PriceComponent></td>
                         <td>{{ row.start }}</td>
                         <td>{{ row.end }}</td>
                         <td>{{ row.period_spare1 }}</td>
@@ -122,7 +122,7 @@
                         <td>{{ row.supervisor }}</td>
                         <td>{{ row.agent }}</td>
                         <td>{{ row.developer }}</td>
-                        <td><PriceComponent :price='row.total_price'></PriceComponent></td>
+                        <td class='align-right'><PriceComponent :price='row.total_price'></PriceComponent></td>
                         <td>{{ row.remarks }}</td>
                         <td><div v-if='!row.hidden_at'><button type="button" class="btn-warning" @click='$router.push({ name: "constructions.copy.create", params: { id: row.id }})'>コピーして作成</button></div></td>
                         <td><div v-if='!row.hidden_at'><button type="button" class="btn-warning" @click='$router.push({ name: "constructions.edit", params: { id: row.id }})'>編集</button></div></td>
