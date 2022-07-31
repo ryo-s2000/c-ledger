@@ -29,6 +29,30 @@
                 </div>
 
                 <div class="m-2">
+                    <span>営業担当</span>
+
+                    <input type="text" class="form-control" v-model='filterParams.sales'>
+                </div>
+
+                <div class="m-2">
+                    <span>工事担当</span>
+
+                    <input type="text" class="form-control" v-model='filterParams.supervisor'>
+                </div>
+
+                <div class="m-2">
+                    <span>現場代理人</span>
+
+                    <input type="text" class="form-control" v-model='filterParams.agent'>
+                </div>
+
+                <div class="m-2">
+                    <span>主任技術者</span>
+
+                    <input type="text" class="form-control" v-model='filterParams.developer'>
+                </div>
+
+                <div class="m-2">
                     <span>工事箇所</span>
 
                     <input type="text" class="form-control" v-model='filterParams.place'>
@@ -122,6 +146,10 @@ export default {
                 category: '',
                 orderer: '',
                 place: '',
+                sales: '',
+                supervisor: '',
+                agent: '',
+                developer: '',
                 limit: 300
             },
             columns: [],

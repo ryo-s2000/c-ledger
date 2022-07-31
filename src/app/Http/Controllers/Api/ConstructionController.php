@@ -25,6 +25,18 @@ class ConstructionController extends Controller
         $place = $request->place;
         if (!empty($place)) $query = $query->where('place', 'like', '%'.$place.'%');
 
+        $sales = $request->sales;
+        if (!empty($sales)) $query = $query->where('sales', 'like', '%'.$sales.'%');
+
+        $supervisor = $request->supervisor;
+        if (!empty($supervisor)) $query = $query->where('supervisor', 'like', '%'.$supervisor.'%');
+
+        $agent = $request->agent;
+        if (!empty($agent)) $query = $query->where('agent', 'like', '%'.$agent.'%');
+
+        $developer = $request->developer;
+        if (!empty($developer)) $query = $query->where('developer', 'like', '%'.$developer.'%');
+
         // sort
         $query = $query->orderBy('year', 'desc')->orderBy('number', 'asc');
 
