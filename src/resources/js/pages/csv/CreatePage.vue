@@ -84,11 +84,13 @@ export default {
                 });
         },
         downloadCsv(rows) {
-            const csvContent = "data:text/csv;charset=utf-8," + rows.map(e => e.join(",")).join("\n");
-            const encodedUri = encodeURI(csvContent);
             const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
+
+            const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
+            const blob = new Blob([bom, rows.map(e => e.join(",")).join("\n")], {type: 'text/csv'});
+            link.setAttribute('href', window.URL.createObjectURL(blob));
             link.setAttribute("download", this.csvFileName());
+
             document.body.appendChild(link);
             link.click();
         },
