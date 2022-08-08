@@ -1,5 +1,5 @@
 <template>
-  <hot-table v-if='columnsLoaded && rowsLoaded' :settings="hotSettings" :data="[columns].concat(formattedRows)"></hot-table>
+  <hot-table :key="resetKey" v-if='columnsLoaded && rowsLoaded' :settings="hotSettings" :data="[columns].concat(formattedRows)"></hot-table>
 </template>
 
 <script>
@@ -23,6 +23,7 @@ export default {
     },
     data: function() {
         return {
+            resetKey: '',
             columnsLoaded: false,
             rowsLoaded: false,
             data: [],
@@ -77,8 +78,8 @@ export default {
                     '',
                 ]
             })
-            console.log(this.formattedRows)
             this.rowsLoaded = true
+            this.resetKey = new Date().toLocaleString()
         }
     }
   }
