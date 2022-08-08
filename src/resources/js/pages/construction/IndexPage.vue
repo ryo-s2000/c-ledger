@@ -30,10 +30,10 @@
 
                 <div class="m-2 mt-4 mb-3">
                     <div>
-                        <span @click='accordionMenue = !accordionMenue' class="h4 pointer">
+                        <div @click='accordionMenue = !accordionMenue' class="h4 pointer border border-dark p-3">
                             <span v-if='!accordionMenue'>詳細検索を開く</span>
                             <span v-else>詳細検索を閉じる</span>
-                        </span>
+                        </div>
                         <transition>
                             <div v-show='accordionMenue'>
                                 <div class="m-2">
