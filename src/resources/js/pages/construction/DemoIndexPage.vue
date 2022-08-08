@@ -82,7 +82,9 @@
             <button type="button" class="btn btn-primary m-2" @click='$router.push({ name: "constructions.create"})'>新規作成</button>
             <button type="button" class="btn btn-success m-2" @click='$router.push({ name: "csv.create"})'>エクセル作成</button>
 
-            <spreadsheet-view :rows='rows' :columns='columns'></spreadsheet-view>
+            <div class="table-bottom-margin">
+                <spreadsheet-view :rows='rows' :columns='columns'></spreadsheet-view>
+            </div>
         </div>
 
         <div class="construction_category_footer">
