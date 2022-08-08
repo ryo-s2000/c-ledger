@@ -24,7 +24,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "vue-router": "^3.5.3",
-        "vuejs-spreadsheet": "^2.2.1"
+        "@handsontable/vue": "^12.1.2",
+        "handsontable": "^12.1.2",
+        "vue-router": "^3.5.3"
     }
 }
