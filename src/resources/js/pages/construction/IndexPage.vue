@@ -82,7 +82,7 @@
             <button type="button" class="btn btn-primary m-2" @click='$router.push({ name: "constructions.create"})'>新規作成</button>
             <button type="button" class="btn btn-success m-2" @click='$router.push({ name: "csv.create"})'>エクセル作成</button>
 
-            <table class="table table-striped table-bordered">
+            <table class="table table-striped table-bordered table-bottom-margin">
                 <thead class="thead-dark">
                     <tr>
                         <th v-for="column in columns" :key="column">
@@ -219,6 +219,9 @@ export default {
 </script>
 
 <style>
+    .table-bottom-margin {
+        margin-bottom: -40px;
+    }
     .v-enter {
         opacity: 0;
     }
