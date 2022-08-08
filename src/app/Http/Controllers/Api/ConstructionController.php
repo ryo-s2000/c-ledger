@@ -97,4 +97,9 @@ class ConstructionController extends Controller
             ]
         ];
     }
+
+    public function numberValidate(string $year, string $number)
+    {
+        return Construction::where('year', $year)->where('number', $number)->exists();
+    }
 }

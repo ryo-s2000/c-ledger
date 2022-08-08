@@ -21,5 +21,6 @@ Route::middleware('auth')->group(function (){
 
     Route::middleware('role.admin')->group(function (){
         Route::resource('constructions', 'ConstructionController', ['only' => ['store', 'show', 'update', 'destroy']]);
+        Route::get('/constructions/number/validate/{year}/{number}', 'ConstructionController@numberValidate');
     });
 });

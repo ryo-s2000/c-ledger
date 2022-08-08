@@ -11,6 +11,10 @@
         <div class="m-2 mb-5">
             <span class="text-danger">[必須]</span><span>工事番号</span>
             <input type="text" class="form-control" v-model='construction.number'>
+
+            <div v-if='numberDuplicate' class="p-3 mb-2 bg-danger text-white">
+                工事番号が重複しています。
+            </div>
         </div>
 
         <div class="m-2 mb-5">
@@ -181,6 +185,8 @@ export default {
         return {
             years: [],
             row_colors: [],
+            isCopy: (new URL(window.location.href)).href.match(/copy/),
+            numberDuplicate: false,
             construction: {
                 id: this.$route.params.id,
                 year: '',
@@ -287,8 +293,7 @@ export default {
             };
         },
         async requestToApi(req) {
-            const isCopy = (new URL(window.location.href)).href.match(/copy/)
-            if(this.construction.id && !isCopy) {
+            if(this.construction.id && !this.isCopy) {
                 const res = await axios.put('/api/constructions/' + this.construction.id, req);
                 if(res) this.successRequest();
             } else {
@@ -303,6 +308,23 @@ export default {
         deleteAllWiteSpace(text) {
             if (!text) return;
             return text.replaceAll(/\s/g,'');
+        },
+        constructionsNumberValidate() {
+            if(!this.construction.id || this.isCopy) {
+                if(this.construction.year && this.construction.number) {
+                    axios.get(`/api/constructions/number/validate/${this.construction.year}/${this.construction.number}`).then(res => {
+                        this.numberDuplicate = Boolean(res.data)
+                    });
+                }
+            }
+        }
+    },
+    watch: {
+        'construction.year'() {
+            this.constructionsNumberValidate();
+        },
+        'construction.number'() {
+            this.constructionsNumberValidate();
         }
     },
     mounted() {
