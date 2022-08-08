@@ -176,6 +176,10 @@ export default {
 </script>
 
 <style>
+    .table-bottom-margin {
+        margin-bottom: 100px;
+    }
+
     .v-enter {
         opacity: 0;
     }
