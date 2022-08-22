@@ -225,7 +225,8 @@ export default {
         getRowColors() {
             return [
                 { key: 'オレンジ', value: '#FFB266' },
-                { key: '黄色', value: '#FFFF66' }
+                { key: '黄色', value: '#FFFF66' },
+                { key: '明るい緑', value: '#CCFFCC' },
             ]
         },
         initConstruction() {
