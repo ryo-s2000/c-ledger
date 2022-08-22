@@ -2,7 +2,6 @@ require('./bootstrap');
 
 import VueRouter from 'vue-router';
 import ConstructionIndexPage from "@/pages/construction/IndexPage";
-import ConstructionDemoIndexPage from "@/pages/construction/DemoIndexPage";
 import ConstructionCreateAndEditPage from "@/pages/construction/CreateAndEditPage";
 import CsvCreatePage from "@/pages/csv/CreatePage";
 import NotFoundPage from "@/pages/utility/NotFoundPage";
@@ -22,11 +21,6 @@ const router = new VueRouter({
             path: '/constructions',
             name: 'constructions.index',
             component: ConstructionIndexPage
-        },
-        {
-            path: '/constructions/demo',
-            name: 'constructions.index',
-            component: ConstructionDemoIndexPage
         },
         {
             path: '/constructions/create',
@@ -72,11 +66,26 @@ Vue.mixin({
                 '発注者',
                 '契約日',
                 '請求日',
-                '入金日',
+            ];
+
+            if (!csv) {
+                columns = columns.concat([
+                    '入金日1',
+                    '入金日2',
+                    '入金日3',
+                    '入金日4',
+                ]);
+            } else {
+                columns = columns.concat([
+                    '入金日',
+                ]);
+            }
+
+            columns = columns.concat([
                 '点数',
                 '工事名',
                 '工事箇所',
-            ];
+            ]);
 
             if (!csv) {
                 columns = columns.concat([
@@ -112,60 +121,6 @@ Vue.mixin({
                     'コピー',
                     '編集',
                     '削除',
-                ]);
-            }
-
-            return columns;
-        },
-        getColumnKeys(csv=false) {
-            let columns = [
-                'year',
-                'number',
-                'scale',
-                'progress_value',
-                'orderer',
-                'contract_date',
-                'billing_date',
-                'payment_date',
-                'score',
-                'name',
-                'place',
-            ];
-
-            if (!csv) {
-                columns = columns.concat([
-                    'googleDrivePath',
-                    'dailyreportPath',
-                ]);
-            }
-
-            columns = columns.concat([
-                'price',
-                'tax',
-                'price_tax',
-                'price_spare1',
-                'price_spare2',
-                'price_spare3',
-                'price_spare4',
-                'start',
-                'end',
-                'period_spare1',
-                'period_spare2',
-                'period_spare3',
-                'period_spare4',
-                'sales',
-                'supervisor',
-                'agent',
-                'developer',
-                'total_price',
-                'remarks',
-            ]);
-
-            if (!csv) {
-                columns = columns.concat([
-                    'copy',
-                    'edit',
-                    'delete',
                 ]);
             }
 

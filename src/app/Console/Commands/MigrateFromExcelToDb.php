@@ -73,6 +73,8 @@ class MigrateFromExcelToDb extends Command
                     }
                 }
 
+                $formattedRow['created_at'] = now();
+                $formattedRow['updated_at'] = now();
                 array_push($targetData, $formattedRow);
 
                 $rowIdx++;

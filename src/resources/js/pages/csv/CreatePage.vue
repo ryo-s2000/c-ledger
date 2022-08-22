@@ -41,18 +41,40 @@ export default {
             for (let i=0; i < this.rows.length; i++) {
                 const row = this.rows[i];
 
+                let orderer = '';
+                if (row.orderer) {
+                    orderer = row.orderer.replace(/\r?\n/g, '');
+                }
+
+                let name = '';
+                if (row.name) {
+                    name = row.name.replace(/\r?\n/g, '');
+                }
+
+                let place = '';
+                if (row.place) {
+                    place = row.place.replace(/\r?\n/g, '');
+                }
+
+                let payment_date = '';
+                if (row.payment_date)  { payment_date += `${row.payment_date} / ` }
+                if (row.payment_date1) { payment_date += `${row.payment_date1} / ` }
+                if (row.payment_date2) { payment_date += `${row.payment_date2} / ` }
+                if (row.payment_date3) { payment_date += `${row.payment_date3} / ` }
+                payment_date = payment_date.slice(0, -3);
+
                 rows.push([
                     row.year,
                     row.number,
                     row.scale,
                     row.progress_value,
-                    row.orderer,
+                    orderer,
                     row.contract_date,
                     row.billing_date,
-                    row.payment_date,
+                    payment_date,
                     row.score,
-                    row.name,
-                    row.place,
+                    name,
+                    place,
                     row.price,
                     row.tax,
                     row.price_tax,

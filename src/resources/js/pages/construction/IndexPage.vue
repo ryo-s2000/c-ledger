@@ -100,6 +100,9 @@
                         <td>{{ row.contract_date }}</td>
                         <td>{{ row.billing_date }}</td>
                         <td>{{ row.payment_date }}</td>
+                        <td>{{ row.payment_date1 }}</td>
+                        <td>{{ row.payment_date2 }}</td>
+                        <td>{{ row.payment_date3 }}</td>
                         <td>{{ row.score }}</td>
                         <td>{{ row.name }}</td>
                         <td>{{ row.place }}</td>
