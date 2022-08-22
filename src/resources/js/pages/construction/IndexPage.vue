@@ -99,6 +99,9 @@
                         <td>{{ row.orderer }}</td>
                         <td>{{ row.contract_date }}</td>
                         <td>{{ row.billing_date }}</td>
+                        <td>{{ row.billing_date1 }}</td>
+                        <td>{{ row.billing_date2 }}</td>
+                        <td>{{ row.billing_date3 }}</td>
                         <td>{{ row.payment_date }}</td>
                         <td>{{ row.payment_date1 }}</td>
                         <td>{{ row.payment_date2 }}</td>

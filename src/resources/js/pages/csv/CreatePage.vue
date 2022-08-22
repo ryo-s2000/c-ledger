@@ -56,6 +56,13 @@ export default {
                     place = row.place.replace(/\r?\n/g, '');
                 }
 
+                let billing_date = '';
+                if (row.billing_date)  { billing_date += `${row.billing_date} / ` }
+                if (row.billing_date1) { billing_date += `${row.billing_date1} / ` }
+                if (row.billing_date2) { billing_date += `${row.billing_date2} / ` }
+                if (row.billing_date3) { billing_date += `${row.billing_date3} / ` }
+                billing_date = billing_date.slice(0, -3);
+
                 let payment_date = '';
                 if (row.payment_date)  { payment_date += `${row.payment_date} / ` }
                 if (row.payment_date1) { payment_date += `${row.payment_date1} / ` }
@@ -70,7 +77,7 @@ export default {
                     row.progress_value,
                     orderer,
                     row.contract_date,
-                    row.billing_date,
+                    billing_date,
                     payment_date,
                     row.score,
                     name,

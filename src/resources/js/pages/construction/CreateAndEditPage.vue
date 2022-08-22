@@ -43,8 +43,23 @@
         </div>
 
         <div class="m-2 mb-5">
-            <span>請求日</span>
+            <span>請求日1</span>
             <input type="date" class="form-control" v-model='construction.billing_date'>
+        </div>
+
+        <div class="m-2 mb-5">
+            <span>請求日2</span>
+            <input type="date" class="form-control" v-model='construction.billing_date1'>
+        </div>
+
+        <div class="m-2 mb-5">
+            <span>請求日3</span>
+            <input type="date" class="form-control" v-model='construction.billing_date2'>
+        </div>
+
+        <div class="m-2 mb-5">
+            <span>請求日4</span>
+            <input type="date" class="form-control" v-model='construction.billing_date3'>
         </div>
 
         <div class="m-2 mb-5">
@@ -215,6 +230,9 @@ export default {
                 progress_value: 0,
                 contract_date: '',
                 billing_date: '',
+                billing_date1: '',
+                billing_date2: '',
+                billing_date3: '',
                 payment_date: '',
                 payment_date1: '',
                 payment_date2: '',
@@ -291,6 +309,9 @@ export default {
                 progress_value: this.construction.progress_value,
                 contract_date: this.construction.contract_date,
                 billing_date: this.construction.billing_date,
+                billing_date1: this.construction.billing_date1,
+                billing_date2: this.construction.billing_date2,
+                billing_date3: this.construction.billing_date3,
                 payment_date: this.construction.payment_date,
                 payment_date1: this.construction.payment_date1,
                 payment_date2: this.construction.payment_date2,

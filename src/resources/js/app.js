@@ -65,11 +65,14 @@ Vue.mixin({
                 '出来高',
                 '発注者',
                 '契約日',
-                '請求日',
             ];
 
             if (!csv) {
                 columns = columns.concat([
+                    '請求日1',
+                    '請求日2',
+                    '請求日3',
+                    '請求日4',
                     '入金日1',
                     '入金日2',
                     '入金日3',
@@ -77,6 +80,7 @@ Vue.mixin({
                 ]);
             } else {
                 columns = columns.concat([
+                    '請求日',
                     '入金日',
                 ]);
             }
