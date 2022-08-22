@@ -68,6 +68,11 @@
         </div>
 
         <div class="m-2 mb-5">
+            <span class="text-danger">[必須]</span><span>工事箇所</span>
+            <input type="text" class="form-control" v-model='construction.place'>
+        </div>
+
+        <div class="m-2 mb-5">
             <span class="text-danger">[必須]</span><span>金額（税抜）</span>
             <input type="number" class="form-control" v-model='construction.price'>
             <PriceComponent :price='parseInt(construction.price)'></PriceComponent>
