@@ -12,6 +12,9 @@ class ConstructionController extends Controller
     {
         $query = $construction;
 
+        // tmp
+        $query = $query->where('year', 'like', 'R%');
+
         // fulter
         $year = $request->year;
         if (!empty($year)) $query = $query->where('year', $year);
