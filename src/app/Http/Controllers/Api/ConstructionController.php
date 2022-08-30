@@ -49,7 +49,7 @@ class ConstructionController extends Controller
         if (!empty($developer)) $query = $query->where('developer', 'like', '%'.$developer.'%');
 
         // sort
-        $query = $query->orderBy('year', 'desc')->orderBy('number', 'asc');
+        $query = $query->orderBy('year', 'desc')->orderBy('row_color', 'desc')->orderBy('number', 'asc');
 
         // limit
         $limit = $request->limit;
