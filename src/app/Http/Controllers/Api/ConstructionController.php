@@ -17,7 +17,15 @@ class ConstructionController extends Controller
         if (!empty($year)) $query = $query->where('year', $year);
 
         $category = $request->category;
-        if (!empty($category)) $query = $query->where('number', 'like', $category.'%');
+        if (!empty($category)) {
+            if (strlen($category) == 2) {
+                // 一般工事
+                $query = $query->where('number', 'like', $category.'-%');
+            } else {
+                // 雑工事
+                $query = $query->where('number', 'like', $category.'%');
+            }
+        }
 
         $orderer = $request->orderer;
         if (!empty($orderer)) $query = $query->where('orderer', 'like', '%'.$orderer.'%');
