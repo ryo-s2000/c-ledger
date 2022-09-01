@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Construction;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ConstructionController extends Controller
 {
@@ -80,6 +81,24 @@ class ConstructionController extends Controller
     public function update(Request $request, int $id)
     {
         $construction = Construction::find($id);
+
+        // 入金日が更新されたら通知
+        if (
+            (new Carbon($construction->payment_date))->toDateString()  !== (new Carbon($request->payment_date))->toDateString()  ||
+            (new Carbon($construction->payment_date1))->toDateString() !== (new Carbon($request->payment_date1))->toDateString() ||
+            (new Carbon($construction->payment_date2))->toDateString() !== (new Carbon($request->payment_date2))->toDateString() ||
+            (new Carbon($construction->payment_date3))->toDateString() !== (new Carbon($request->payment_date3))->toDateString()
+        ) {
+            $message = "入金日が更新されました";
+            $message = $message."\n年度: ".$request->year;
+            $message = $message."\n工事番号: ".$request->number;
+            $message = $message."\n入金日1: ".$request->payment_date;
+            $message = $message."\n入金日2: ".$request->payment_date1;
+            $message = $message."\n入金日3: ".$request->payment_date2;
+            $message = $message."\n入金日4: ".$request->payment_date3;
+            lineNotify($message);
+        }
+
         $construction->fill($request->all());
 
         if($construction->progress_value !== $request->progress_value) {
