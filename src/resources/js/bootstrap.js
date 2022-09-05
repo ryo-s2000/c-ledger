@@ -17,6 +17,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 window.axios.interceptors.response.use(
     response => response,
     async error => {
+        console.log(error);
         window.alert('↓コピーして管理者に送ってください↓\n\n' + error.response.data.message);
     }
 );
