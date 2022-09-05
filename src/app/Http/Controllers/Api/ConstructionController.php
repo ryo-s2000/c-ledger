@@ -13,12 +13,12 @@ class ConstructionController extends Controller
     {
         $query = $construction;
 
-        // tmp
+        // Tmp: delete if you delete all years started D
         $query = $query->where('year', 'like', 'R%');
 
         // fulter
         $year = $request->year;
-        if (!empty($year)) $query = $query->where('year', $year);
+        if (!empty($year)) $query = $query->where('year', 'like', '%'.$year.'%');
 
         $category = $request->category;
         if (!empty($category)) {

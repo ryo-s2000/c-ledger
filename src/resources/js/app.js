@@ -50,12 +50,16 @@ const router = new VueRouter({
      ]
 });
 
+const yearStart = 3;
+const yearEnd = 20;
+const baseYears = [...Array(yearEnd-yearStart+1).keys()].map(i => i+=yearStart);
 Vue.mixin({
     methods: {
         getYears() {
-            let years = [];
-            for ( let i=3; i<=20; ++i ) years.push(`R${i}`);
-            return years;
+            return baseYears.flatMap(y => [`R${y}`]);
+        },
+        getYearsWithForward() {
+            return baseYears.flatMap(y => [`R${y}`, `R${y}-R${y+1}`, `R${y}-R${y+1}-R${y+2}`]);
         },
         getColumns(csv=false) {
             let columns = [

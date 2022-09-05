@@ -376,7 +376,7 @@ export default {
         }
     },
     mounted() {
-        this.years = this.getYears();
+        this.years = this.getYearsWithForward();
         this.row_colors = this.getRowColors();
         this.initConstruction();
     }
