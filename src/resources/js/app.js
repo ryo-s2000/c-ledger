@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 import ConstructionIndexPage from "@/pages/construction/IndexPage";
 import ConstructionCreateAndEditPage from "@/pages/construction/CreateAndEditPage";
 import CsvCreatePage from "@/pages/csv/CreatePage";
+import SummaryIndexPage from "@/pages/summary/IndexPage";
+import SummaryProfitPage from "@/pages/summary/ProfitPage";
 import NotFoundPage from "@/pages/utility/NotFoundPage";
 
 window.Vue = require('vue').default;
@@ -41,6 +43,16 @@ const router = new VueRouter({
             path: '/csv/create',
             name: 'csv.create',
             component: CsvCreatePage
+        },
+        {
+            path: '/summary',
+            name: 'summary.index',
+            component: SummaryIndexPage
+        },
+        {
+            path: '/summary/profit',
+            name: 'summary.profit',
+            component: SummaryProfitPage
         },
         {
             path: '*',

@@ -35,3 +35,19 @@
         background-color: #f2f2f2;
     }
 }
+
+// table
+table {
+    border-collapse: collapse;
+    border: solid 2px orange;
+}
+table td {
+    border: dashed 1px orange;
+    padding: 3px 10px;
+}
+thead {
+    background-color: #fff5e5;
+}
+tbody {
+    border: solid 2px orange;
+}

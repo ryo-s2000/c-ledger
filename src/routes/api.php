@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function (){
     Route::middleware('role.view')->group(function (){
         Route::resource('constructions', 'ConstructionController', ['only' => ['index']]);
+
+        Route::get('/util/unique_people_names/{columnName}', 'UtilController@getUniqueNames');
+        Route::get('/summary/profit', 'SummaryController@profit');
     });
 
     Route::middleware('role.admin')->group(function (){

@@ -80,7 +80,8 @@
             </div>
 
             <button type="button" class="btn btn-primary m-2" @click='$router.push({ name: "constructions.create"})'>新規作成</button>
-            <button type="button" class="btn btn-success m-2" @click='$router.push({ name: "csv.create"})'>エクセル作成</button>
+            <button type="button" class="btn btn-success m-2" @click='$router.push({ name: "csv.create"})'>エクセルとして出力</button>
+            <button type="button" class="btn btn-warning m-2" @click='$router.push({ name: "summary.index"})'>集計ページ</button>
 
             <table class="table table-striped table-bordered table-bottom-margin">
                 <thead class="thead-dark">
