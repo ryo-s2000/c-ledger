@@ -29,7 +29,7 @@
 
         <div class="m-4">
             <div v-if="rows.length == 0">
-                データを更新してください
+                表示できるデータが存在しません
             </div>
             <table v-else>
                 <thead>
