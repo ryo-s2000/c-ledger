@@ -92,10 +92,16 @@ class ConstructionController extends Controller
             $message = "入金日が更新されました";
             $message = $message."\n年度: ".$request->year;
             $message = $message."\n工事番号: ".$request->number;
-            $message = $message."\n入金日1: ".$request->payment_date;
-            $message = $message."\n入金日2: ".$request->payment_date1;
-            $message = $message."\n入金日3: ".$request->payment_date2;
-            $message = $message."\n入金日4: ".$request->payment_date3;
+            $message = $message."\n工事名: ".$request->name;
+            $message = $message."\n発注者: ".$request->orderer;
+            $message = $message."\n\n入金日1: ".$request->payment_date;
+            $message = $message."\n入金額1: ¥".number_format($request->billing_amount);
+            $message = $message."\n\n入金日2: ".$request->payment_date1;
+            $message = $message."\n入金額2: ¥".number_format($request->billing_amount1);
+            $message = $message."\n\n入金日3: ".$request->payment_date2;
+            $message = $message."\n入金額3: ¥".number_format($request->billing_amount2);
+            $message = $message."\n\n入金日4: ".$request->payment_date3;
+            $message = $message."\n入金額4: ¥".number_format($request->billing_amount3);
             lineNotify($message);
         }
 
