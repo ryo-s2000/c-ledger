@@ -42,44 +42,76 @@
             <input type="date" class="form-control" v-model='construction.contract_date'>
         </div>
 
-        <div class="m-2 mb-5">
-            <span>請求日1</span>
-            <input type="date" class="form-control" v-model='construction.billing_date'>
+        <div class="flex">
+            <div class="m-2 mb-5">
+                <span>請求日1</span>
+                <input type="date" class="form-control" v-model='construction.billing_date'>
+            </div>
+
+            <div class="m-2 mb-5">
+                <span>請求金額1</span>
+                <input type="number" class="form-control" v-model='construction.billing_amount'>
+                <PriceComponent :price='parseInt(construction.billing_amount)'></PriceComponent>
+            </div>
+
+            <div class="m-2 mb-5">
+                <span>入金日1</span>
+                <input type="date" class="form-control" v-model='construction.payment_date'>
+            </div>
         </div>
 
-        <div class="m-2 mb-5">
-            <span>請求日2</span>
-            <input type="date" class="form-control" v-model='construction.billing_date1'>
+        <div class="flex">
+            <div class="m-2 mb-5">
+                <span>請求日2</span>
+                <input type="date" class="form-control" v-model='construction.billing_date1'>
+            </div>
+
+            <div class="m-2 mb-5">
+                <span>請求金額2</span>
+                <input type="number" class="form-control" v-model='construction.billing_amount1'>
+                <PriceComponent :price='parseInt(construction.billing_amount1)'></PriceComponent>
+            </div>
+
+            <div class="m-2 mb-5">
+                <span>入金日2</span>
+                <input type="date" class="form-control" v-model='construction.payment_date1'>
+            </div>
         </div>
 
-        <div class="m-2 mb-5">
-            <span>請求日3</span>
-            <input type="date" class="form-control" v-model='construction.billing_date2'>
+        <div class="flex">
+            <div class="m-2 mb-5">
+                <span>請求日3</span>
+                <input type="date" class="form-control" v-model='construction.billing_date2'>
+            </div>
+
+            <div class="m-2 mb-5">
+                <span>請求金額3</span>
+                <input type="number" class="form-control" v-model='construction.billing_amount2'>
+                <PriceComponent :price='parseInt(construction.billing_amount2)'></PriceComponent>
+            </div>
+
+            <div class="m-2 mb-5">
+                <span>入金日3</span>
+                <input type="date" class="form-control" v-model='construction.payment_date2'>
+            </div>
         </div>
 
-        <div class="m-2 mb-5">
-            <span>請求日4</span>
-            <input type="date" class="form-control" v-model='construction.billing_date3'>
-        </div>
+        <div class="flex">
+            <div class="m-2 mb-5">
+                <span>請求日4</span>
+                <input type="date" class="form-control" v-model='construction.billing_date3'>
+            </div>
 
-        <div class="m-2 mb-5">
-            <span>入金日1</span>
-            <input type="date" class="form-control" v-model='construction.payment_date'>
-        </div>
+            <div class="m-2 mb-5">
+                <span>請求金額4</span>
+                <input type="number" class="form-control" v-model='construction.billing_amount3'>
+                <PriceComponent :price='parseInt(construction.billing_amount3)'></PriceComponent>
+            </div>
 
-        <div class="m-2 mb-5">
-            <span>入金日2</span>
-            <input type="date" class="form-control" v-model='construction.payment_date1'>
-        </div>
-
-        <div class="m-2 mb-5">
-            <span>入金日3</span>
-            <input type="date" class="form-control" v-model='construction.payment_date2'>
-        </div>
-
-        <div class="m-2 mb-5">
-            <span>入金日3</span>
-            <input type="date" class="form-control" v-model='construction.payment_date3'>
+            <div class="m-2 mb-5">
+                <span>入金日4</span>
+                <input type="date" class="form-control" v-model='construction.payment_date3'>
+            </div>
         </div>
 
         <div class="m-2 mb-5">
@@ -233,6 +265,10 @@ export default {
                 billing_date1: '',
                 billing_date2: '',
                 billing_date3: '',
+                billing_amount: '',
+                billing_amount1: '',
+                billing_amount2: '',
+                billing_amount3: '',
                 payment_date: '',
                 payment_date1: '',
                 payment_date2: '',
@@ -312,6 +348,10 @@ export default {
                 billing_date1: this.construction.billing_date1,
                 billing_date2: this.construction.billing_date2,
                 billing_date3: this.construction.billing_date3,
+                billing_amount: this.construction.billing_amount,
+                billing_amount1: this.construction.billing_amount1,
+                billing_amount2: this.construction.billing_amount2,
+                billing_amount3: this.construction.billing_amount3,
                 payment_date: this.construction.payment_date,
                 payment_date1: this.construction.payment_date1,
                 payment_date2: this.construction.payment_date2,
