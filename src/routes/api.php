@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function (){
         Route::get('/util/unique_people_names/{columnName}', 'UtilController@getUniqueNames');
         Route::get('/summary/profit', 'SummaryController@profit');
         Route::get('/summary/order', 'SummaryController@order');
+        Route::get('/summary/comprehensive', 'SummaryController@comprehensive');
     });
 
     Route::middleware('role.admin')->group(function (){

@@ -6,6 +6,7 @@ use Carbon\Carbon;
 
 class ProfitService
 {
+    // TODO 合計処理をバックエンドに寄せる
     public function getFormattedProfits(int $ad, object $constructions): array
     {
         $formattedConstructions = [];
@@ -164,7 +165,7 @@ class ProfitService
         return $formattedBudgets;
     }
 
-    // todo 繰越どうする
+    // TODO 繰越どうする あとでやろうね
     private function getSummarise(array $progress, array $amounts, array $budgets): array
     {
         $rows = [];

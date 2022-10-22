@@ -172,26 +172,28 @@ export default {
                 let AllSum = 0;
                 for (let j=0; j<thisMonthRows.length; ++j) {
                     const category = thisMonthRows[j].number.slice(0,2);
+                    const thisMonthPrice = thisMonthRows[j].price;
 
                     switch (category) {
                         case 'MC':
-                            MCSum += thisMonthRows[j].price
+                            MCSum += thisMonthPrice;
                             break;
                         case 'MT':
-                            MTSum += thisMonthRows[j].price
+                            MTSum += thisMonthPrice;
                             break;
                         case 'MI':
-                            MISum += thisMonthRows[j].price
+                            MISum += thisMonthPrice;
                             break;
                         case 'KC':
-                            KCSum += thisMonthRows[j].price
+                            KCSum += thisMonthPrice;
                             break;
                         default:
-                            OtherSum += thisMonthRows[j].price
+                            OtherSum += thisMonthPrice;
                     }
-                    AllSum += thisMonthRows[j].price
+                    AllSum += thisMonthPrice;
                 }
 
+                // 合計の行(一番下の行)
                 this.total[i] = {
                     'MC': MCSum,
                     'MT': MTSum,
@@ -201,6 +203,7 @@ export default {
                     'all': AllSum
                 }
 
+                // 合計の列(一番右の列)
                 this.totalSum.MC += MCSum
                 this.totalSum.MT += MTSum
                 this.totalSum.MI += MISum

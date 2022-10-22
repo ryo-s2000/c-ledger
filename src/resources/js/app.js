@@ -5,6 +5,7 @@ import ConstructionIndexPage from "@/pages/construction/IndexPage";
 import ConstructionCreateAndEditPage from "@/pages/construction/CreateAndEditPage";
 import CsvCreatePage from "@/pages/csv/CreatePage";
 import SummaryIndexPage from "@/pages/summary/IndexPage";
+import SummaryComprehensivePage from "@/pages/summary/ComprehensivePage";
 import SummaryOrderPage from "@/pages/summary/OrderPage";
 import SummaryProfitPage from "@/pages/summary/ProfitPage";
 import NotFoundPage from "@/pages/utility/NotFoundPage";
@@ -49,6 +50,11 @@ const router = new VueRouter({
             path: '/summary',
             name: 'summary.index',
             component: SummaryIndexPage
+        },
+        {
+            path: '/summary/comprehensive',
+            name: 'summary.comprehensive',
+            component: SummaryComprehensivePage
         },
         {
             path: '/summary/order',
