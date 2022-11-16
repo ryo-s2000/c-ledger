@@ -19,7 +19,7 @@ php artisan key:generate
 php artisan migrate
 ```
 
-Compile JS
+Compile js
 ```
 npm run watch
 ```
