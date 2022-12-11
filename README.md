@@ -30,5 +30,10 @@ docker container prune
 docker compose -f docker-compose-dev.yml build --no-cache
 ```
 
+After update .env
+```
+php artisan config:cache
+```
+
 URL
 http://localhost:8080/

@@ -10,6 +10,34 @@ if (!function_exists('lineNotify')) {
     }
 }
 
+if (!function_exists('GoogleChatNotify')) {
+    function GoogleChatNotify($message, $constructionNumber): void
+    {
+        $url = '';
+
+        switch(mb_substr($constructionNumber, 0, 2)){
+            case 'KA':
+            case 'KB':
+            case 'MA':
+            case 'MB':
+            case 'KD':
+                $url = config('google_chat_notify.webhook_url.civil');
+                break;
+            case 'KC':
+            case 'MC':
+            case 'MT':
+            case 'ZA':
+                $url = config('google_chat_notify.webhook_url.architecture');
+                break;
+            case 'MI':
+                $url = config('google_chat_notify.webhook_url.house');
+                break;
+        }
+
+        exec("curl -X POST --data "."'".'{"text": "'.$message.'"}'."'"." -H 'Content-Type: application/json' "."'".$url."'");
+    }
+}
+
 if (!function_exists('warekiToAd')) {
     function warekiToAd($wareki): int
     {

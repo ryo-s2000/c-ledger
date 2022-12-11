@@ -102,7 +102,10 @@ class ConstructionController extends Controller
             $message = $message."\n入金額3: ¥".number_format($request->billing_amount2);
             $message = $message."\n\n入金日4: ".$request->payment_date3;
             $message = $message."\n入金額4: ¥".number_format($request->billing_amount3);
+
+            // Todo Delete
             lineNotify($message);
+            GoogleChatNotify($message, $construction->number);
         }
 
         $construction->fill($request->all());
