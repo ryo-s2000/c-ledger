@@ -82,13 +82,28 @@ class ConstructionController extends Controller
     {
         $construction = Construction::find($id);
 
-        // 入金日が更新されたら通知
+        $send_flag = false;
+
+        if (
+            (is_null($construction->payment_date)  && !is_null($request->payment_date)) ||
+            (is_null($construction->payment_date1) && !is_null($request->payment_date1)) ||
+            (is_null($construction->payment_date2) && !is_null($request->payment_date2)) ||
+            (is_null($construction->payment_date3) && !is_null($request->payment_date3))
+        ) {
+            $send_flag = true;
+        }
+
         if (
             (new Carbon($construction->payment_date))->toDateString()  !== (new Carbon($request->payment_date))->toDateString()  ||
             (new Carbon($construction->payment_date1))->toDateString() !== (new Carbon($request->payment_date1))->toDateString() ||
             (new Carbon($construction->payment_date2))->toDateString() !== (new Carbon($request->payment_date2))->toDateString() ||
             (new Carbon($construction->payment_date3))->toDateString() !== (new Carbon($request->payment_date3))->toDateString()
         ) {
+            $send_flag = true;
+        }
+
+        // 入金日が更新されたら通知
+        if ($send_flag) {
             $message = "入金日が更新されました";
             $message = $message."\n年度: ".$request->year;
             $message = $message."\n工事番号: ".$request->number;
