@@ -71,6 +71,20 @@ class ConstructionController extends Controller
             'progress' => $this->createProgressColumn($request->progress_value)
         ]);
         $construction->save();
+
+        $send_flag = false;
+        if (
+            !is_null($request->payment_date) ||
+            !is_null($request->payment_date1) ||
+            !is_null($request->payment_date2) ||
+            !is_null($request->payment_date3)
+        ) {
+            $send_flag = true;
+        }
+
+        if($send_flag) {
+            $this->sendNotify($request, $construction->number);
+        }
     }
 
     public function show(int $id)
@@ -83,7 +97,6 @@ class ConstructionController extends Controller
         $construction = Construction::find($id);
 
         $send_flag = false;
-
         if (
             (is_null($construction->payment_date)  && !is_null($request->payment_date)) ||
             (is_null($construction->payment_date1) && !is_null($request->payment_date1)) ||
@@ -102,35 +115,16 @@ class ConstructionController extends Controller
             $send_flag = true;
         }
 
-        // 入金日が更新されたら通知
-        if ($send_flag) {
-            $message = "入金日が更新されました";
-            $message = $message."\n年度: ".$request->year;
-            $message = $message."\n工事番号: ".$request->number;
-            $message = $message."\n工事名: ".$request->name;
-            $message = $message."\n発注者: ".$request->orderer;
-            $message = $message."\n\n入金日1: ".$request->payment_date;
-            $message = $message."\n入金額1: ¥".number_format($request->billing_amount);
-            $message = $message."\n\n入金日2: ".$request->payment_date1;
-            $message = $message."\n入金額2: ¥".number_format($request->billing_amount1);
-            $message = $message."\n\n入金日3: ".$request->payment_date2;
-            $message = $message."\n入金額3: ¥".number_format($request->billing_amount2);
-            $message = $message."\n\n入金日4: ".$request->payment_date3;
-            $message = $message."\n入金額4: ¥".number_format($request->billing_amount3);
-
-            // Todo Delete
-            lineNotify($message);
-            GoogleChatNotify($message, $construction->number);
+        if($send_flag) {
+            $this->sendNotify($request, $construction->number);
         }
 
         $construction->fill($request->all());
-
         if($construction->progress_value !== $request->progress_value) {
             $construction->fill([
                 'progress' => array_merge($construction->progress, $this->createProgressColumn($request->progress_value))
             ]);
         }
-
         $construction->save();
     }
 
@@ -140,6 +134,11 @@ class ConstructionController extends Controller
         $construction->fill([
             'hidden_at' => now()
         ])->save();
+    }
+
+    public function numberValidate(string $year, string $number)
+    {
+        return Construction::where('year', $year)->where('number', $number)->exists();
     }
 
     private function createProgressColumn($progressValue)
@@ -152,8 +151,22 @@ class ConstructionController extends Controller
         ];
     }
 
-    public function numberValidate(string $year, string $number)
-    {
-        return Construction::where('year', $year)->where('number', $number)->exists();
+    // 入金日が更新されたら通知
+    private function sendNotify($request, $constructionNumber) {
+        $message = "入金日が更新されました";
+        $message = $message."\n年度: ".$request->year;
+        $message = $message."\n工事番号: ".$request->number;
+        $message = $message."\n工事名: ".$request->name;
+        $message = $message."\n発注者: ".$request->orderer;
+        $message = $message."\n\n入金日1: ".$request->payment_date;
+        $message = $message."\n入金額1: ¥".number_format($request->billing_amount);
+        $message = $message."\n\n入金日2: ".$request->payment_date1;
+        $message = $message."\n入金額2: ¥".number_format($request->billing_amount1);
+        $message = $message."\n\n入金日3: ".$request->payment_date2;
+        $message = $message."\n入金額3: ¥".number_format($request->billing_amount2);
+        $message = $message."\n\n入金日4: ".$request->payment_date3;
+        $message = $message."\n入金額4: ¥".number_format($request->billing_amount3);
+
+        GoogleChatNotify($message, $constructionNumber);
     }
 }
